@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ANAAJ — Farmer's Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-icon">🌱</div>
+    ANAAJ
+  </div>
+  <div class="topbar-right">
+    <div class="location-pill" id="location-pill">
+      <div class="dot"></div>
+      <span id="location-name">Detecting...</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="dashboard">
+    <span class="tab-icon">🏠</span>
+    <span class="tab-label">Dashboard</span>
+  </button>
+  <button class="tab-btn" data-tab="mitigation">
+    <span class="tab-icon">🛡️</span>
+    <span class="tab-label">Mitigation</span>
+  </button>
+  <button class="tab-btn" data-tab="chat">
+    <span class="tab-icon">💬</span>
+    <span class="tab-label">AI Chat</span>
+  </button>
+  <button class="tab-btn" data-tab="crops">
+    <span class="tab-icon">🌾</span>
+    <span class="tab-label">Crops</span>
+  </button>
+</nav>
+
+<!-- ===================== TAB: DASHBOARD ===================== -->
+<div class="tab-panel active" id="tab-dashboard">
+<div class="shell">
+
+  <div class="hero-card" id="hero-card">
+    <div class="hero-left">
+      <div class="hero-greeting">Today's Conditions</div>
+      <div class="hero-temp" id="hero-temp">
+        <span id="temp-val">--</span><sup>°C</sup>
+      </div>
+      <div class="hero-condition" id="hero-cond">Loading weather data…</div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-label">Humidity</div>
+          <div class="hero-stat-val" id="stat-hum">--</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Wind</div>
+          <div class="hero-stat-val" id="stat-wind">--</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">Rain chance</div>
+          <div class="hero-stat-val" id="stat-rain">--</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-label">UV Index</div>
+          <div class="hero-stat-val" id="stat-uv">--</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-icon-area">
+      <div class="weather-icon-big" id="hero-icon">🌤️</div>
+      <div class="hero-date" id="hero-date">--</div>
+    </div>
+  </div>
+
+  <div class="alert-banner" id="alert-banner" style="display:none;">
+    <div class="alert-icon">⚡</div>
+    <div class="alert-text">
+      <strong id="alert-title">Weather Alert</strong>
+      <span id="alert-msg"></span>
+    </div>
+  </div>
+
+  <div class="section-heading"><span>⚠️</span> Risk Assessment</div>
+  <div class="risk-row">
+    <div class="risk-card risk-medium" id="heat-card">
+      <div class="risk-card-accent"></div>
+      <div class="risk-icon">🔥</div>
+      <div class="risk-label">Heat Risk</div>
+      <div class="risk-level" id="heat-level">Medium</div>
+      <div class="risk-desc" id="heat-desc">Temperatures above 30°C expected. Irrigate in early morning.</div>
+      <div class="risk-badge">Monitor</div>
+    </div>
+    <div class="risk-card risk-low" id="rain-card">
+      <div class="risk-card-accent"></div>
+      <div class="risk-icon">🌧️</div>
+      <div class="risk-label">Rain Risk</div>
+      <div class="risk-level" id="rain-level">Low</div>
+      <div class="risk-desc" id="rain-desc">Light showers possible. Check drainage before sowing.</div>
+      <div class="risk-badge">All Clear</div>
+    </div>
+    <div class="risk-card risk-low" id="disease-card">
+      <div class="risk-card-accent"></div>
+      <div class="risk-icon">🦠</div>
+      <div class="risk-label">Disease Risk</div>
+      <div class="risk-level" id="disease-level">Low</div>
+      <div class="risk-desc" id="disease-desc">Humidity within safe range. Fungal risk minimal today.</div>
+      <div class="risk-badge">All Clear</div>
+    </div>
+  </div>
+
+  <div class="section-heading"><span>💡</span> Today's Advice</div>
+  <div class="advice-card" id="advice-card">
+    <div class="advice-tag"><span>🌾</span> Smart Recommendation</div>
+    <div class="advice-quote" id="advice-quote">Loading personalised advice based on today's conditions…</div>
+    <ul class="advice-bullets" id="advice-bullets">
+      <li><div class="bullet-dot"></div>Fetching data…</li>
+    </ul>
+  </div>
+
+  <div class="section-heading"><span>📅</span> 7-Day Forecast</div>
+  <div class="forecast-strip" id="forecast-strip"></div>
+
+  <div class="bottom-grid">
+    <div class="info-card">
+      <div class="info-card-title">Soil & Field Conditions</div>
+      <div class="soil-item"><span class="soil-key">Soil Moisture</span><span class="soil-val" id="soil-moist">--</span></div>
+      <div class="soil-item"><span class="soil-key">Soil Temp</span><span class="soil-val" id="soil-temp">--</span></div>
+      <div class="soil-item"><span class="soil-key">Evapotransp.</span><span class="soil-val" id="soil-evap">--</span></div>
+      <div class="soil-item"><span class="soil-key">Dew Point</span><span class="soil-val" id="dew-point">--</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Crop Score Today</div>
+      <div class="progress-bar-wrap">
+        <div class="pb-label"><span>Sunlight Adequacy</span><span class="pb-val" id="pb-sun-val">--</span></div>
+        <div class="pb-track"><div class="pb-fill pb-amber" id="pb-sun" style="width:0%"></div></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="pb-label"><span>Water Stress</span><span class="pb-val" id="pb-water-val">--</span></div>
+        <div class="pb-track"><div class="pb-fill pb-blue" id="pb-water" style="width:0%"></div></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="pb-label"><span>Growth Conditions</span><span class="pb-val" id="pb-growth-val">--</span></div>
+        <div class="pb-track"><div class="pb-fill pb-green" id="pb-growth" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+</div></div><!-- /tab-dashboard -->
+
+<!-- ===================== TAB: MITIGATION ===================== -->
+<div class="tab-panel" id="tab-mitigation">
+  <div class="shell">
+    <div class="mit-page-header">
+      <div class="section-heading" style="margin-bottom:0.2rem;"><span>🛡️</span> Crisis Mitigation Center</div>
+      <p class="mit-subheading">Step-by-step emergency protocols to protect your crops from extreme weather events.</p>
+    </div>
+    <!-- JS renders everything here -->
+    <div id="mitigation-content">
+      <div class="mit-loading">
+        <div class="spinner"></div>
+        Waiting for weather data to assess threats…
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB: AI CHAT ===================== -->
+<div class="tab-panel" id="tab-chat">
+  <div class="shell">
+    <div class="section-heading" style="margin-bottom:0.25rem;"><span>💬</span> AI Farming Assistant</div>
+    <p style="color:var(--text-muted);font-size:13px;margin-bottom:1rem;">Powered by Google Gemma — takes your live weather into account for every answer.</p>
+    <div id="chat-content"></div>
+  </div>
+</div>
+
+<!-- ===================== TAB: CROPS ===================== -->
+<div class="tab-panel" id="tab-crops">
+  <div class="shell">
+    <div class="section-heading" style="margin-bottom:0.25rem;"><span>🌾</span> Crop Guide</div>
+    <p style="color:var(--text-muted);font-size:13px;margin-bottom:1rem;">Ranked by suitability for your exact location, live weather, season and soil type.</p>
+    <div id="crops-content">
+      <div class="mit-loading"><div class="spinner"></div>Waiting for location and weather data…</div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="mitigation.js"></script>
+<script src="chat.js"></script>
+<script src="crops.js"></script>
+<script>
+  /* ---- Tab switching ---- */
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.tab;
+
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+
+      btn.classList.add("active");
+      document.getElementById("tab-" + target).classList.add("active");
+
+      if (target === "mitigation") renderMitigationTab();
+      if (target === "chat")       renderChatTab();
+      if (target === "crops")      renderCropsTab();
+    });
+  });
+</script>
+</body>
+</html>
