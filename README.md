@@ -1,12 +1,8 @@
 # 🌱 ANAAJ — Climate-Aware Farming Assistant
-
-> "We don't just show farmers the weather. We tell them what to do about it."
-
 ## 🏆 Built for CAIAS Hackathon 2026
 
 ANAAJ is a climate adaptation tool for Indian farmers that converts live weather data into simple, actionable farming decisions — instantly, for free, on any device.
 
----
 
 ## 🌾 The Problem
 
@@ -14,13 +10,11 @@ India has 140 million farming households. Over 85% own a basic smartphone. Yet c
 
 The issue is not lack of weather data — it is the gap between data and decision. A farmer seeing "humidity 84%, temperature 31°C" does not know what to do. By the time they figure it out, the crop is already at risk.
 
----
 
 ## 💡 The Solution
 
 ANAAJ converts raw meteorological data into specific, actionable farming decisions in real time — automatically, for free, on any device with a browser.
 
----
 
 ## ✨ Features
 
@@ -45,7 +39,7 @@ ANAAJ converts raw meteorological data into specific, actionable farming decisio
 - Active threats auto-expand and highlight on tab open
 
 ### 💬 AI Farming Assistant
-- Powered by Google Gemma 27B via OpenRouter
+- Powered Z.AI: GLM 4.5 Air via OpenRouter
 - Live weather injected into every prompt for location-specific answers
 - Responds in Hindi and regional Indian languages natively
 - Suggested quick-start questions for common farming queries
